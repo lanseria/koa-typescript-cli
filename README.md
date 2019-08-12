@@ -2,11 +2,15 @@
 
 ## DOCKER pgsql 使用说明
 
+### 启动
+
 ```bash
 docker-compose up -d
 ```
- 
+
 如果要强制 `Compose` 停止并重新创建所有容器，请使用该 `--force-recreate` 标志。
+
+## 结束
 
 ```bash
 docker-compose down
