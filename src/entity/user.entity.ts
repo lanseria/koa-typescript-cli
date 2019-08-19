@@ -11,4 +11,7 @@ export default class User {
   @Column({ comment: "密码" })
   password: string;
 
+  @Column({ nullable: true, comment: "年龄" })
+  age: number;
+
 }

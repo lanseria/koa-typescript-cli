@@ -1,7 +1,8 @@
 import * as Koa from "koa";
 import * as HttpStatus from "http-status-codes";
 import * as bodyParser from "koa-bodyparser";
-import movieController from "../movie/movie.controller";
+import movieController from "../controllers/movie.controller";
+import userController from "../controllers/user.controller";
 
 const app: Koa = new Koa();
 
@@ -24,6 +25,9 @@ app.use(bodyParser());
 // Route middleware.
 app.use(movieController.routes());
 app.use(movieController.allowedMethods());
+
+app.use(userController.routes());
+app.use(userController.allowedMethods());
 
 // Application error logging.
 app.on("error", console.error);

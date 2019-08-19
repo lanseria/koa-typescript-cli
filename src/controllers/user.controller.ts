@@ -1,7 +1,7 @@
 import * as Koa from "koa";
 import * as Router from "koa-router";
 import { getRepository, Repository } from "typeorm";
-import userEntity from "./user.entity";
+import userEntity from "../entity/user.entity";
 import * as HttpStatus from "http-status-codes";
 
 const routerOpts: Router.IRouterOptions = {

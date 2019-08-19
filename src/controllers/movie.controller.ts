@@ -1,7 +1,7 @@
 import * as Koa from "koa";
 import * as Router from "koa-router";
 import { getRepository, Repository } from "typeorm";
-import movieEntity from "./movie.entity";
+import movieEntity from "../entity/movie.entity";
 import * as HttpStatus from "http-status-codes";
 
 const routerOpts: Router.IRouterOptions = {
