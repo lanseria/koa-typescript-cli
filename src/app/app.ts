@@ -23,11 +23,9 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 app.use(bodyParser());
 
 // Route middleware.
-app.use(movieController.routes());
-app.use(movieController.allowedMethods());
+app.use(movieController.routes()).use(movieController.allowedMethods());
 
-app.use(userController.routes());
-app.use(userController.allowedMethods());
+app.use(userController.routes()).use(userController.allowedMethods());
 
 // Application error logging.
 app.on("error", console.error);
