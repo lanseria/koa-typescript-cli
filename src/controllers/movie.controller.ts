@@ -1,6 +1,7 @@
 import Koa from "koa";
 import Router from "koa-router";
 import HttpStatus from "http-status-codes";
+import Joi from "joi";
 import * as movieServices from "../services/movie.services";
 import * as resultUtil from "../utils/result.util";
 
