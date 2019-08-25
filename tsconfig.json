@@ -6,6 +6,7 @@
     "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },

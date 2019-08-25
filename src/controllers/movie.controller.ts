@@ -1,6 +1,6 @@
-import * as Koa from "koa";
-import * as Router from "koa-router";
-import * as HttpStatus from "http-status-codes";
+import Koa from "koa";
+import Router from "koa-router";
+import HttpStatus from "http-status-codes";
 import * as movieServices from "../services/movie.services";
 import * as resultUtil from "../utils/result.util";
 
@@ -14,7 +14,7 @@ router.get("/", async (ctx: Koa.Context) => {
   // Movie Service findAll
   const movies = await movieServices.findAll();
   // Respond with our movie data.
-  ctx.body = resultUtil.success(movies)
+  ctx.body = resultUtil.success(movies);
 });
 
 router.get("/:movie_id", async (ctx: Koa.Context) => {
@@ -26,14 +26,14 @@ router.get("/:movie_id", async (ctx: Koa.Context) => {
     ctx.throw(HttpStatus.NOT_FOUND);
   }
   // Respond with our movie data.
-  ctx.body = resultUtil.success(movie)
+  ctx.body = resultUtil.success(movie);
 });
 
 router.post("/", async (ctx: Koa.Context) => {
-  const movie = await movieServices.create(ctx.request.body)
+  const movie = await movieServices.create(ctx.request.body);
   // Set the status to 201.
   // Respond with our movie data.ctx.status = HttpStatus.CREATED;
-  ctx.body = resultUtil.success(movie)
+  ctx.body = resultUtil.success(movie);
 });
 
 router.delete("/:movie_id", async (ctx: Koa.Context) => {
@@ -56,8 +56,11 @@ router.patch("/:movie_id", async (ctx: Koa.Context) => {
   if (!movie) {
     ctx.throw(HttpStatus.NOT_FOUND);
   }
-  const updatedMovie = await movieServices.updateSome(ctx.params.movie_id, ctx.request.body);
-  ctx.body = resultUtil.success(updatedMovie)
+  const updatedMovie = await movieServices.updateSome(
+    ctx.params.movie_id,
+    ctx.request.body
+  );
+  ctx.body = resultUtil.success(updatedMovie);
 });
 
 export default router;

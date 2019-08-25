@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hello koa-typescript-cli 1`] = `"{\\"code\\":0,\\"msg\\":\\"success\\",\\"data\\":\\"hello world koa-typescript-cli\\"}"`;
+
+exports[`Hello world works 1`] = `"{\\"code\\":0,\\"msg\\":\\"success\\",\\"data\\":[{\\"id\\":\\"51127ff5-11de-4797-829e-17ad5e02a510\\",\\"name\\":\\"heelo\\",\\"releaseYear\\":null,\\"rating\\":null}]}"`;

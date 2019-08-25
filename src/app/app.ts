@@ -1,6 +1,7 @@
-import * as Koa from "koa";
-import * as HttpStatus from "http-status-codes";
-import * as bodyParser from "koa-bodyparser";
+import Koa from "koa";
+import HttpStatus from "http-status-codes";
+import bodyParser from "koa-bodyparser";
+import indexController from "../controllers/index.controller";
 import movieController from "../controllers/movie.controller";
 import userController from "../controllers/user.controller";
 
@@ -23,6 +24,8 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 app.use(bodyParser());
 
 // Route middleware.
+app.use(indexController.routes()).use(indexController.allowedMethods());
+
 app.use(movieController.routes()).use(movieController.allowedMethods());
 
 app.use(userController.routes()).use(userController.allowedMethods());
