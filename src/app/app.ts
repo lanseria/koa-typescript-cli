@@ -31,6 +31,8 @@ app.use(movieController.routes()).use(movieController.allowedMethods());
 app.use(userController.routes()).use(userController.allowedMethods());
 
 // Application error logging.
-app.on("error", console.error);
+if (process.env.NODE_ENV !== "test") {
+  app.on("error", console.error);
+}
 
 export default app;
