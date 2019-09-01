@@ -1,9 +1,12 @@
 import Koa from "koa";
 import HttpStatus from "http-status-codes";
 import bodyParser from "koa-bodyparser";
+import config from "../config/config";
 import indexController from "../controllers/index.controller";
 import movieController from "../controllers/movie.controller";
 import userController from "../controllers/user.controller";
+import authController from "../controllers/auth.controller";
+import koaJwt from "koa-jwt";
 
 const app: Koa = new Koa();
 
@@ -23,12 +26,20 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 // Middleware
 app.use(bodyParser());
 
+app.use(
+  koaJwt({ secret: config.jwtSecret }).unless({
+    path: [/^\/auth\/login/, /^\/auth\/register/]
+  })
+);
+
 // Route middleware.
 app.use(indexController.routes()).use(indexController.allowedMethods());
 
 app.use(movieController.routes()).use(movieController.allowedMethods());
 
 app.use(userController.routes()).use(userController.allowedMethods());
+
+app.use(authController.routes()).use(authController.allowedMethods());
 
 // Application error logging.
 if (process.env.NODE_ENV !== "test") {
