@@ -14,7 +14,7 @@ const routerOpts: Router.IRouterOptions = {
 const router: Router = new Router(routerOpts);
 
 function getToken(payload = {}) {
-  return jwt.sign(payload, config.jwtSecret, { expiresIn: "4h" });
+  return jwt.sign(payload, config.jwtSecret, { expiresIn: "0" });
 }
 
 const userSchema = Joi.object({
@@ -48,10 +48,13 @@ router.post("/login", validator.body(userSchema), async (ctx: Koa.Context) => {
       })
     );
   } else {
-    ctx.body = resultUtil.error({
-      payload: ctx.request.body,
-      dataBase: user
-    }, "用户不存在或密码错误")
+    ctx.body = resultUtil.error(
+      {
+        payload: ctx.request.body,
+        dataBase: user
+      },
+      "用户不存在或密码错误"
+    );
   }
 });
 
