@@ -21,6 +21,19 @@ export async function findById(user_id: string): Promise<userEntity> {
   return user;
 }
 /**
+ * 通过ID查询
+ * @param user_name
+ */
+export async function findByUsername(user_name: string): Promise<userEntity> {
+  const userRepo: Repository<userEntity> = getRepository(userEntity);
+  const user = await userRepo.findOne({
+    where: {
+      name: user_name
+    }
+  })
+  return user;
+}
+/**
  * 创建
  * @param userBody
  */

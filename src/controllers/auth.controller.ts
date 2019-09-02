@@ -17,18 +17,19 @@ function getToken(payload = {}) {
   return jwt.sign(payload, config.jwtSecret, { expiresIn: "4h" });
 }
 
-const registerUserSchema = Joi.object({
+const userSchema = Joi.object({
   name: Joi.string().required(),
   password: Joi.string().required()
 });
 
 router.post(
   "/register",
-  validator.body(registerUserSchema),
+  validator.body(userSchema),
   async (ctx: Koa.Context) => {
     const user = await userServices.create(ctx.request.body);
     ctx.body = resultUtil.success(
       getToken({
+        id: user.id,
         name: user.name,
         password: user.password
       })
@@ -36,8 +37,22 @@ router.post(
   }
 );
 
-router.post("/login", async (ctx: Koa.Context) => {
-  ctx.body = resultUtil.success("hello world koa-typescript-cli");
+router.post("/login", validator.body(userSchema), async (ctx: Koa.Context) => {
+  const user = await userServices.findByUsername(ctx.request.body.name);
+  if (user.password === ctx.request.body.password) {
+    ctx.body = resultUtil.success(
+      getToken({
+        id: user.id,
+        name: user.name,
+        password: user.password
+      })
+    );
+  } else {
+    ctx.body = resultUtil.error({
+      payload: ctx.request.body,
+      dataBase: user
+    }, "用户不存在或密码错误")
+  }
 });
 
 export default router;
