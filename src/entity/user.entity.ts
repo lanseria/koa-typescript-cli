@@ -6,7 +6,7 @@ export default class User {
   id: string;
 
   @Column({ unique: true, comment: "用户名" })
-  name: string;
+  username: string;
 
   @Column({ comment: "密码" })
   password: string;

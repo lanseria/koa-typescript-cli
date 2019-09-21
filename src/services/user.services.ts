@@ -13,24 +13,24 @@ export async function findAll(): Promise<userEntity[]> {
 }
 /**
  * 通过ID查询
- * @param user_id
+ * @param userId
  */
-export async function findById(user_id: string): Promise<userEntity> {
+export async function findById(userId: string): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  const user = await userRepo.findOne(user_id);
+  const user = await userRepo.findOne(userId);
   return user;
 }
 /**
- * 通过ID查询
- * @param user_name
+ * 通过usename查询
+ * @param username
  */
-export async function findByUsername(user_name: string): Promise<userEntity> {
+export async function findByUsername(username: string): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
   const user = await userRepo.findOne({
     where: {
-      name: user_name
+      username: username
     }
-  })
+  });
   return user;
 }
 /**
@@ -45,23 +45,23 @@ export async function create(userBody: userEntity): Promise<userEntity> {
 }
 /**
  * 通过ID删除
- * @param user_id
+ * @param userId
  */
-export async function del(user_id: string): Promise<void> {
+export async function del(userId: string): Promise<void> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  await userRepo.delete(user_id);
+  await userRepo.delete(userId);
 }
 /**
  * 部分更新
- * @param user_id
+ * @param userId
  * @param userBody
  */
 export async function updateSome(
-  user_id: string,
+  userId: string,
   userBody: userEntity
 ): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  const user = await findById(user_id);
+  const user = await findById(userId);
   const updatedMovie = await userRepo.merge(user, userBody);
   return updatedMovie;
 }

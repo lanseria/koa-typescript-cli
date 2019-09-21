@@ -18,7 +18,7 @@ function getToken(payload = {}) {
 }
 
 const userSchema = Joi.object({
-  name: Joi.string().required(),
+  username: Joi.string().required(),
   password: Joi.string().required()
 });
 
@@ -30,7 +30,7 @@ router.post(
     ctx.body = resultUtil.success(
       getToken({
         id: user.id,
-        name: user.name,
+        username: user.username,
         password: user.password
       })
     );
@@ -38,12 +38,12 @@ router.post(
 );
 
 router.post("/login", validator.body(userSchema), async (ctx: Koa.Context) => {
-  const user = await userServices.findByUsername(ctx.request.body.name);
+  const user = await userServices.findByUsername(ctx.request.body.username);
   if (user.password === ctx.request.body.password) {
     ctx.body = resultUtil.success(
       getToken({
         id: user.id,
-        name: user.name,
+        username: user.username,
         password: user.password
       })
     );
