@@ -13,17 +13,15 @@ export async function findAll(): Promise<userEntity[]> {
 }
 /**
  * 通过ID查询
- * TODO: 如果 userId 不存在
  * @param userId
  */
 export async function findById(userId: string): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  const user = await userRepo.findOne(userId);
+  const user = await userRepo.findOne(userId) || new userEntity();
   return user;
 }
 /**
  * 通过usename查询
- * TODO: 如果 username 不存在
  * @param username
  */
 export async function findByUsername(username: string): Promise<userEntity> {
@@ -32,7 +30,7 @@ export async function findByUsername(username: string): Promise<userEntity> {
     where: {
       username: username
     }
-  });
+  }) || new userEntity();
   return user;
 }
 /**
