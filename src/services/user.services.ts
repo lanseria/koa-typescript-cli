@@ -13,6 +13,7 @@ export async function findAll(): Promise<userEntity[]> {
 }
 /**
  * 通过ID查询
+ * TODO: 如果 userId 不存在
  * @param userId
  */
 export async function findById(userId: string): Promise<userEntity> {
@@ -22,6 +23,7 @@ export async function findById(userId: string): Promise<userEntity> {
 }
 /**
  * 通过usename查询
+ * TODO: 如果 username 不存在
  * @param username
  */
 export async function findByUsername(username: string): Promise<userEntity> {
