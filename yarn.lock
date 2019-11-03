@@ -419,9 +419,9 @@
     "@types/jest-diff" "*"
 
 "@types/joi@^14.3.3":
-  version "14.3.3"
-  resolved "https://registry.npm.taobao.org/@types/joi/download/@types/joi-14.3.3.tgz#f251aa8150fc0b6a7ce9feab21802a28473de335"
-  integrity sha1-8lGqgVD8C2p86f6rIYAqKEc94zU=
+  version "14.3.4"
+  resolved "https://registry.npm.taobao.org/@types/joi/download/@types/joi-14.3.4.tgz#eed1e14cbb07716079c814138831a520a725a1e0"
+  integrity sha1-7tHhTLsHcWB5yBQTiDGlIKcloeA=
 
 "@types/jsonwebtoken@^8.3.3":
   version "8.3.5"
@@ -505,9 +505,9 @@
   integrity sha1-V2gql3Gj97CcJJfygSmgRilmUko=
 
 "@types/node@^12.6.9":
-  version "12.12.0"
-  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.0.tgz#ff3201972d6dc851a9275308a17b9b5094e68057"
-  integrity sha1-/zIBly1tyFGpJ1MIoXubUJTmgFc=
+  version "12.12.5"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.5.tgz#66103d2eddc543d44a04394abb7be52506d7f290"
+  integrity sha1-ZhA9Lt3FQ9RKBDlKu3vlJQbX8pA=
 
 "@types/range-parser@*":
   version "1.2.3"
