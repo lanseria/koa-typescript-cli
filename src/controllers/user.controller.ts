@@ -3,6 +3,7 @@ import Router from "koa-router";
 import HttpStatus from "http-status-codes";
 import * as userServices from "../services/user.services";
 import * as resultUtil from "../utils/result.util";
+import * as jwtUtil from "../utils/jwt.util";
 
 const routerOpts: Router.IRouterOptions = {
   prefix: "/users"
@@ -15,6 +16,17 @@ const router: Router = new Router(routerOpts);
 router.get("/", async (ctx: Koa.Context) => {
   const users = await userServices.findAll();
   ctx.body = resultUtil.success(users);
+});
+/**
+ * 获取单个
+ */
+router.get("/info", async (ctx: Koa.Context) => {
+  const payload = jwtUtil.getPayload(ctx.headers.authorization)
+  const user = await userServices.findById(payload.id.toString());
+  if (!user) {
+    ctx.throw(HttpStatus.NOT_FOUND);
+  }
+  ctx.body = resultUtil.success(user);
 });
 /**
  * 获取单个
