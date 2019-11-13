@@ -17,7 +17,7 @@ export async function findAll(): Promise<userEntity[]> {
  */
 export async function findById(userId: string): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  const user = await userRepo.findOne(userId) || new userEntity();
+  const user = (await userRepo.findOne(userId)) || new userEntity();
   return user;
 }
 /**
@@ -26,11 +26,12 @@ export async function findById(userId: string): Promise<userEntity> {
  */
 export async function findByUsername(username: string): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
-  const user = await userRepo.findOne({
-    where: {
-      username: username
-    }
-  }) || new userEntity();
+  const user =
+    (await userRepo.findOne({
+      where: {
+        username: username
+      }
+    })) || new userEntity();
   return user;
 }
 /**
@@ -62,6 +63,6 @@ export async function updateSome(
 ): Promise<userEntity> {
   const userRepo: Repository<userEntity> = getRepository(userEntity);
   const user = await findById(userId);
-  const updatedMovie = await userRepo.merge(user, userBody);
-  return updatedMovie;
+  const updatedUser = await userRepo.merge(user, userBody);
+  return updatedUser;
 }

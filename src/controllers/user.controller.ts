@@ -18,10 +18,10 @@ router.get("/", async (ctx: Koa.Context) => {
   ctx.body = resultUtil.success(users);
 });
 /**
- * 获取单个
+ * 获取用户本身信息
  */
 router.get("/info", async (ctx: Koa.Context) => {
-  const payload = jwtUtil.getPayload(ctx.headers.authorization)
+  const payload = jwtUtil.getPayload(ctx.headers.authorization);
   const user = await userServices.findById(payload.id.toString());
   if (!user) {
     ctx.throw(HttpStatus.NOT_FOUND);
@@ -39,14 +39,14 @@ router.get("/:user_id", async (ctx: Koa.Context) => {
   ctx.body = resultUtil.success(user);
 });
 /**
- * 创建用户
+ * 创建
  */
 router.post("/", async (ctx: Koa.Context) => {
   const user = await userServices.create(ctx.request.body);
   ctx.body = resultUtil.success(user);
 });
 /**
- * 删除用户
+ * 删除
  */
 router.delete("/:user_id", async (ctx: Koa.Context) => {
   const user = await userServices.findById(ctx.params.user_id);
@@ -57,7 +57,7 @@ router.delete("/:user_id", async (ctx: Koa.Context) => {
   ctx.status = HttpStatus.NO_CONTENT;
 });
 /**
- * 修改用户部分信息
+ * 修改部分信息
  */
 router.patch("/:user_id", async (ctx: Koa.Context) => {
   const user = await userServices.findById(ctx.params.user_id);

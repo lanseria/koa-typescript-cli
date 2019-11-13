@@ -8,6 +8,7 @@ import indexController from "../controllers/index.controller";
 import movieController from "../controllers/movie.controller";
 import userController from "../controllers/user.controller";
 import authController from "../controllers/auth.controller";
+import roleController from "../controllers/role.controller";
 
 const app: Koa = new Koa();
 
@@ -40,6 +41,8 @@ app.use(movieController.routes()).use(movieController.allowedMethods());
 app.use(userController.routes()).use(userController.allowedMethods());
 
 app.use(authController.routes()).use(authController.allowedMethods());
+
+app.use(roleController.routes()).use(roleController.allowedMethods());
 
 // Application error logging.
 if (process.env.NODE_ENV !== "test") {
