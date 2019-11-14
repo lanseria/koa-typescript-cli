@@ -3,7 +3,7 @@ import roleEntity from "../entity/role.entity";
 /**
  * 查询所有
  */
-export async function findAll(): Promise<roleEntity[]> {
+export async function findAll (): Promise<roleEntity[]> {
   // Get the role repository from TypeORM.
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
   // Find the requested role.
@@ -14,7 +14,7 @@ export async function findAll(): Promise<roleEntity[]> {
  * 通过ID查询
  * @param roleId
  */
-export async function findById(roleId: string): Promise<roleEntity> {
+export async function findById (roleId: string): Promise<roleEntity> {
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
   const role = (await roleRepo.findOne(roleId)) || new roleEntity();
   return role;
@@ -23,7 +23,7 @@ export async function findById(roleId: string): Promise<roleEntity> {
  * 创建
  * @param roleBody
  */
-export async function create(roleBody: roleEntity): Promise<roleEntity> {
+export async function create (roleBody: roleEntity): Promise<roleEntity> {
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
   let role: roleEntity = roleRepo.create(roleBody);
   role = await roleRepo.save(role);
@@ -33,7 +33,7 @@ export async function create(roleBody: roleEntity): Promise<roleEntity> {
  * 通过ID删除
  * @param roleId
  */
-export async function del(roleId: string): Promise<void> {
+export async function del (roleId: string): Promise<void> {
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
   await roleRepo.delete(roleId);
 }
@@ -42,12 +42,13 @@ export async function del(roleId: string): Promise<void> {
  * @param roleId
  * @param roleBody
  */
-export async function updateSome(
+export async function updateSome (
   roleId: string,
   roleBody: roleEntity
 ): Promise<roleEntity> {
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
   const role = await findById(roleId);
   const updatedRole = await roleRepo.merge(role, roleBody);
+  await roleRepo.save(updatedRole)
   return updatedRole;
 }

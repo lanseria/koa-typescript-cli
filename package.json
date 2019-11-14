@@ -8,7 +8,8 @@
     "build": "tsc",
     "serve": "ts-node src/server.ts",
     "start": "nodemon",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "typeorm": "ts-node ./node_modules/.bin/typeorm --config src/database/database.connection.options.ts"
   },
   "keywords": [],
   "author": "",
