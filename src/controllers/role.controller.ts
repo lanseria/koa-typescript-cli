@@ -42,8 +42,8 @@ router.delete("/:role_id", async (ctx: Koa.Context) => {
   if (!role) {
     ctx.throw(HttpStatus.NOT_FOUND);
   }
-  await roleServices.del(ctx.params.role_id);
-  ctx.status = HttpStatus.NO_CONTENT;
+  const result = await roleServices.del(ctx.params.role_id);
+  ctx.body = resultUtil.success(result);
 });
 /**
  * 修改部分信息

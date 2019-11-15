@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, Repository, DeleteResult } from "typeorm";
 import roleEntity from "../entity/role.entity";
 /**
  * 查询所有
@@ -33,9 +33,10 @@ export async function create (roleBody: roleEntity): Promise<roleEntity> {
  * 通过ID删除
  * @param roleId
  */
-export async function del (roleId: string): Promise<void> {
+export async function del (roleId: string): Promise<DeleteResult> {
   const roleRepo: Repository<roleEntity> = getRepository(roleEntity);
-  await roleRepo.delete(roleId);
+  const result: DeleteResult = await roleRepo.delete(roleId);
+  return result
 }
 /**
  * 部分更新

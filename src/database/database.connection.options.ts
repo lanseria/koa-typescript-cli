@@ -19,4 +19,3 @@ const connectionOpts: ConnectionOptions = {
   synchronize: true
 };
 module.exports = connectionOpts
-export { connectionOpts }
