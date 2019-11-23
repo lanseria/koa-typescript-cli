@@ -9,7 +9,7 @@
     "serve": "ts-node src/server.ts",
     "start": "nodemon",
     "test": "jest --detectOpenHandles",
-    "typeorm": "ts-node ./node_modules/.bin/typeorm -f src/database/database.connection.options.ts"
+    "typeorm": "ts-node ./node_modules/.bin/typeorm -f ./src/database/database.connection.options.ts"
   },
   "keywords": [],
   "author": "",
